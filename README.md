@@ -32,6 +32,23 @@ python3 --version
 python3 binoculars_animation.py
 ```
 
+## Sandbox shortcuts
+
+Run `python3 sandbox.py` to launch any animation from a single menu. Shortcuts:
+- `b` — Binoculars install (Matrix vibe)
+- `t` — Split-flap train board
+- `w` — Diagonal ripple water
+- `m` — Manga TV static reveal
+
+List shortcuts without launching: `python3 sandbox.py --list`.
+
+## TypeScript animation sandbox
+
+Use the TS sandbox to preview the SpotifyDJ animations without the Python menu:
+- `npm run demo:ts` — interactive shortcuts (TypeScript)
+- `npm run demo:ts:board` — render the SpotifyDJ board demo (matches `spotifydj.txt`)
+- `npm run demo:ts:flip` — play only the split-flap track/artist animation
+
 ## Usage
 
 ### Interactive Menu

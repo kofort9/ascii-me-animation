@@ -290,34 +290,43 @@ def animate_installation(frames: List[List[str]], config: AnimationConfig, previ
     
     if not preview:
         print(f"{Colors.CYAN}Initializing email monitor...{Colors.RESET}")
-        time.sleep(1)
+        time.sleep(1.5)  # Longer initial pause
     
     iterations = 1 if preview else config.iterations
     
     for _ in range(iterations):
         if config.rain:
-            for _ in range(5):
+            # Matrix rain effect before animation
+            for _ in range(3):  # Reduced rain cycles
                 clear_screen()
                 rain_effect = matrix_rain_effect(40, 12)
                 print('\n'.join(Colors.DIM + get_color_scheme(config)[0] + line + Colors.RESET for line in rain_effect))
-                time.sleep(0.1)
+                time.sleep(0.2)  # Faster rain
         
+        # Show each frame with longer display time
         for frame in frames:
             clear_screen()
             styled_frame = apply_matrix_effect(frame, config)
             print_frame(styled_frame, config.rain)
-            time.sleep(config.speed)
+            time.sleep(config.speed * 2)  # Double the frame display time
     
     if not preview:
+        # Final display phase
         clear_screen()
         styled_frame = apply_matrix_effect(frames[0], config)
         print_frame(styled_frame, rain_effect=False)
         print(f"\n{Colors.BRIGHT_GREEN}Email monitor initialized successfully.{Colors.RESET}")
-        input("Press Enter to continue...")
+        time.sleep(5)  # 5 second hold on final frame
+        input(f"\n{Colors.DIM}Press Enter to continue...{Colors.RESET}")
 
 def main():
     """Main entry point for the script."""
     config = AnimationConfig()
+    
+    # Set longer default timings
+    config.iterations = 2      # Reduced iterations for longer per-frame time
+    config.speed = 0.5        # Slower default speed
+    config.intensity = 0.4    # Slightly higher effect intensity
     
     # Try to load default configuration if it exists
     if os.path.exists('binoculars_config.txt'):
@@ -345,7 +354,7 @@ def main():
         elif choice == '8':
             save_config(config)
         elif choice == '9':
-            print(f"{Colors.CYAN}Goodbye!{Colors.RESET}")
+            print(f"\n{Colors.CYAN}Goodbye!{Colors.RESET}")
             sys.exit(0)
         else:
             print(f"{Colors.RED}Invalid option. Please try again.{Colors.RESET}")

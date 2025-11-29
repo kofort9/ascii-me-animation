@@ -1,0 +1,88 @@
+{
+    "name": "spotifydj",
+    "version": "0.1.0-alpha",
+    "description": "SpotifyDJ — real-time DJ assistant TUI for Spotify",
+    "main": "dist/main.js",
+    "bin": {
+      "spotifydj": "./bin/spotifydj"
+    },
+    "engines": {
+      "node": ">=18"
+    },
+    "scripts": {
+      "prestart": "node tools/preflight.js",
+      "start": "ts-node src/main.ts",
+      "build": "tsc",
+      "prepare": "npm run build",
+      "db:migrate": "prisma migrate deploy",
+      "db:seed": "prisma db seed",
+      "db:setup": "npm run db:migrate && npm run db:seed",
+      "refresh:library": "ts-node src/refreshLibrary.ts",
+      "test": "jest",
+      "test:watch": "jest --watch",
+      "test:coverage": "jest --coverage",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\" \"tests/**/*.ts\"",
+    "demo:ts": "ts-node --transpile-only ts_sandbox.ts",
+    "demo:ts:board": "ts-node --transpile-only ts_sandbox.ts --run=board",
+    "demo:ts:flip": "ts-node --transpile-only ts_sandbox.ts --run=flip"
+  },
+    "keywords": [
+      "spotify",
+      "dj",
+      "mixing",
+      "camelot-wheel",
+      "harmonic-mixing",
+      "music",
+      "cli"
+    ],
+    "author": "",
+    "license": "ISC",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/kofort9/spotifydj.git"
+    },
+    "bugs": {
+      "url": "https://github.com/kofort9/spotifydj/issues"
+    },
+    "homepage": "https://github.com/kofort9/spotifydj#readme",
+    "devDependencies": {
+      "@types/jest": "^29.5.12",
+      "@types/node": "^20.19.25",
+      "@types/spotify-web-api-node": "^5.0.11",
+      "@types/supertest": "^6.0.3",
+      "@typescript-eslint/eslint-plugin": "^5.62.0",
+      "@typescript-eslint/parser": "^5.62.0",
+      "eslint": "^8.57.0",
+      "jest": "^29.7.0",
+      "prettier": "^3.2.5",
+      "prisma": "^5.22.0",
+      "supertest": "^7.1.4",
+      "ts-jest": "^29.1.2",
+      "ts-node": "^10.9.2",
+      "typescript": "^5.3.3"
+    },
+    "dependencies": {
+      "@prisma/client": "^5.22.0",
+      "@types/express": "^5.0.5",
+      "@types/uuid": "^10.0.0",
+      "axios": "^1.6.7",
+      "chalk": "^4.1.2",
+      "csv-parser": "^3.2.0",
+      "dotenv": "^16.4.4",
+      "express": "^4.21.2",
+      "open": "^8.4.2",
+      "spotify-web-api-node": "^5.0.2",
+      "string-width": "^4.2.3",
+      "strip-ansi": "^6.0.1",
+      "uuid": "^13.0.0",
+      "winston": "^3.18.3",
+      "zod": "^3.25.76"
+    },
+    "prisma": {
+      "seed": "npx ts-node prisma/seed.ts"
+    }
+  }
+  
